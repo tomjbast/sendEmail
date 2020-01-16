@@ -10,4 +10,4 @@ class SettledError extends Error {
   }
 }
 
-modules.export = SettledError
+module.exports = SettledError

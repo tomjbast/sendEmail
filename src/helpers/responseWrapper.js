@@ -1,8 +1,8 @@
 // this wrapper ensures our responses to any request are uniform and predictable.
 // we always respond with data and error
-function responseWrapper(response, error = false, res){
+function responseWrapper(response, res, error = false){
 
-  res
+  return res
     .status(response.status || 200)
     .json({
       data: error ? null : response,
@@ -11,4 +11,4 @@ function responseWrapper(response, error = false, res){
 
 }
 
-modules.export = responseWrapper()
+module.exports = responseWrapper
