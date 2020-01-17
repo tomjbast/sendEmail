@@ -12,9 +12,9 @@ const app = express()
 // parse application/json
 app.use(bodyParser.json())
 
-app.post('/sendEmail', (req, res) => {
-  // we take a token/password or something here so that we know the request to send an email came from one of our services
-  // we get given the listingId from the microservice that updated the listingsViews table
+app.post('/sendEmail', async (req, res) => {
+  // we take a token/password here so that we know the request to send an email came from one of our services
+  // we are given the listingId from the microservice that updated the listingsViews table
   const {listingId, token} = req.body
 
   const isTokenValid = checkToken(token)
@@ -34,8 +34,10 @@ app.post('/sendEmail', (req, res) => {
     postcode: listing.postcode
   }
 
-  const emailResponse = sendEmail(emailData)
-  if (!emailResponse){
+  // if there is any issue with sending the email, the catch will deal with it. If catch doesnt fire we can assume success
+  try {
+    await sendEmail(emailData)
+  } catch (e) {
     return responseWrapper(new SettledError(403, "ERR_EMAIL_FAIL", "The requested email failed to send"), res, true)
   }
 

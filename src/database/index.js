@@ -1,3 +1,5 @@
+// these could also be arrays of opbjects as they normally would in a real environment.
+// however with such small data sets objects are easier to use
 const users = {
   1: {
     name: "Mike",

@@ -1,4 +1,5 @@
-function sendEmail(emailData){
+// made async so it returns a promise
+async function sendEmail(emailData){
   const sentEmail = `To: ${emailData.email}
       From: hello@settled.co.uk
       Subject: Your listing is getting popular
@@ -9,11 +10,9 @@ function sendEmail(emailData){
     Kind regards,
     The Settled Team`
 
-  // ive console logged here instead of in server.js as this function would do the actual sending and return something
-  // to indicate success or failure. In this example it cant fail, so it just returns true
+  // ive console logged here instead of in server.js as this function would do the actual sending
   console.log(sentEmail)
   return true
-
 }
 
 module.exports = sendEmail
