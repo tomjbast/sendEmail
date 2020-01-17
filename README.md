@@ -1,4 +1,4 @@
-## Settled - Task
+# Settled - Task
 
 Create a server with an endpoint that sends an email to a user upon their listing receiving 1000 views. 
 
